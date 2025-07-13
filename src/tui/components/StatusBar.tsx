@@ -5,9 +5,15 @@ interface StatusBarProps {
   commitish: string;
   totalFiles: number;
   currentMode: 'list' | 'inline' | 'side-by-side';
+  reviewedFiles: number;
 }
 
-const StatusBar: React.FC<StatusBarProps> = ({ commitish, totalFiles, currentMode }) => {
+const StatusBar: React.FC<StatusBarProps> = ({
+  commitish,
+  totalFiles,
+  currentMode,
+  reviewedFiles,
+}) => {
   return (
     <Box borderStyle="round" paddingX={1} marginBottom={1}>
       <Box flexGrow={1}>
@@ -18,6 +24,10 @@ const StatusBar: React.FC<StatusBarProps> = ({ commitish, totalFiles, currentMod
         <Text color="yellow">{commitish}</Text>
         <Text> | </Text>
         <Text>{totalFiles} files changed</Text>
+        <Text> | </Text>
+        <Text color="green">
+          {reviewedFiles}/{totalFiles} files viewed
+        </Text>
       </Box>
       <Box>
         <Text dimColor>
